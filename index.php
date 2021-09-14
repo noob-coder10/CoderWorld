@@ -1,3 +1,7 @@
+<?php
+  session_start();
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -29,10 +33,10 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
+            <a class="nav-link active" aria-current="page" href="index.php">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="about.html">About</a>
+            <a class="nav-link" href="about.php">About</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
@@ -50,7 +54,7 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="contact.html">Contact Us</a>
+            <a class="nav-link" href="contact.php">Contact Us</a>
           </li>
         </ul>
         <form class="d-flex">
@@ -59,13 +63,26 @@
         </form>
 
         <div class="mx-2">
-          <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
-          <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#signupModal">Signup</button>
+          <!-- <button class="btn btn-danger" id = "b1" onclick="window.location='login.php' " data-bs-toggle="modal">Login</button> -->
+          <?php
+            if(isset($_SESSION['email']))
+              {echo '<button class="btn btn-danger" id = "b1" onclick="window.location=\'dashboard.php\' " data-bs-toggle="modal">Profile</button>';}
+            else
+            {echo '<button class="btn btn-danger" id = "b1" onclick="window.location=\'login.php\' " data-bs-toggle="modal">Login</button>';}
+          ?>
+          <!-- <button class="btn btn-danger" id = "b2" onclick="window.location='signup.php' "data-bs-toggle="modal">Signup</button> -->
+          <?php
+            if(isset($_SESSION['email']))
+              {echo '<button class="btn btn-danger" id = "b2" onclick="window.location=\'logout.php\' "data-bs-toggle="modal">Logout</button>';}
+            else
+            {echo '<button class="btn btn-danger" id = "b2" onclick="window.location=\'signup.php\' "data-bs-toggle="modal">Signup</button>';}
+          ?>
+
         </div>
       </div>
     </div>
   </nav>
-
+  
 
   <!-- Login Modal -->
   <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
@@ -110,7 +127,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form action="signup.php" method="POST">
+          <form action="index.php" method="POST">
             <div class="row my-2">
               <label for="exampleInputEmail1" class="form-label">Full Name</label>
               <div class="col">
@@ -125,7 +142,8 @@
               <label for="exampleInputEmail1" class="form-label">Email address</label>
               <input type="email" class="form-control" name="email" id="exampleInputEmail1"
                 aria-describedby="emailHelp">
-              <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                <div id='emailHelp' class='form-text'>We will never share your email with anyone.</div>
+                
             </div>
             <div class="mb-3">
               <label for="exampleInputPassword1" class="form-label">Password</label>
@@ -148,6 +166,8 @@
       </div>
     </div>
   </div>
+
+
   <div id="carouselExampleCaptions" class="carousel slide carousel-fade" data-bs-ride="carousel">
     <div class="carousel-indicators">
       <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
