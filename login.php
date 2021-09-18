@@ -138,12 +138,8 @@ $insert=false;
             <p class="text-center fw-bold mx-3 mb-0">Or</p>
           </div>
 
-            <?php
-            if($insert==true)
-            {
-                echo "<p class='form-text text-danger'>Incorrect email or passward</p>";
-            }
-            ?> 
+            
+             
           <!-- Email input -->
           <div class="form-outline mb-4">
             <input type="email" id="form3Example3" class="form-control form-control-lg" name="lemail"
